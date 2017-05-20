@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/jquery.js"></script>
+    <script src="js/chart.js"></script>
+</head>
+<body>
+
+<select id="district"></select>
+<select id="from" class="years"></select>
+<select id="to" class="years"></select>
+
+<button type="button" onclick="getResult()">OK</button>
+
+
+<div class="chartWala">
+    Select Range
+</div>
+
+<script>
+    function getResult(){
+        $('.chartWala').html('Loading');
+        var dist = $("#district").val();
+        var from = $("#from").val();
+        var to = $("#to").val();
+        $.post('//mmsonline.website/test/data.php',{action:'get result2',dist:dist,from:from,to:to},function(e){
+            console.log(e);
+            var jsonData = JSON.parse(e);
+            var a = '<canvas id="myChart" width="400" height="600"></canvas>';
+            $('.chartWala').html(a);
+            var ctx = document.getElementById("myChart");
+            var data = {
+                labels: jsonData.crime,
+                datasets: [
+                    {
+                        data: jsonData.sum,
+                        backgroundColor: [
+                            "#FF6384",
+                            "#36A2EB",
+                            "#FFCE56"
+                        ],
+                        hoverBackgroundColor: [
+                            "#FF6384",
+                            "#36A2EB",
+                            "#FFCE56"
+                        ]
+                    }
+                ]
+            };
+            var myChart = new Chart(ctx, {
+                type: 'doughnut',
+                data: data
+            });
+
+        });
+    }
+
+    $.post('//mmsonline.website/test/data.php',{action:'get district'},function(e){
+        $("#district").html(e);
+    });
+    $.post('//mmsonline.website/test/data.php',{action:'get years'},function(e){
+        $(".years").html(e);
+    });
+</script>
+</body>
+</html>
