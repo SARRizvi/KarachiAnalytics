@@ -27,7 +27,7 @@
         $('.chartWala').html('Loading');
 
         var dist = $("#district").val() , crime = $("#crimes").val(), from = $("#from").val(), to= $("#to").val();
-        $.post('//mmsonline.website/test/data.php',{action:'get result',dist:dist,crime:crime,to:to,from:from},function(e){
+        $.post('http://mmsonline.website/test/data.php',{action:'get result',dist:dist,crime:crime,to:to,from:from},function(e){
             var jsonData = JSON.parse(e);
             var a = '<canvas id="myChart" width="400" height="400"></canvas>';
             $('.chartWala').html(a);
@@ -57,13 +57,13 @@
     }
 
 
-    $.post('//mmsonline.website/test/data.php',{action:'get district'},function(e){
+    $.post('http://mmsonline.website/test/data.php',{action:'get district'},function(e){
         $("#district").html(e);
     });
-    $.post('//mmsonline.website/test/data.php',{action:'get crimes'},function(e){
+    $.post('http://mmsonline.website/test/data.php',{action:'get crimes'},function(e){
         $("#crimes").html(e);
     });
-    $.post('//mmsonline.website/test/data.php',{action:'get years'},function(e){
+    $.post('http://mmsonline.website/test/data.php',{action:'get years'},function(e){
         $(".years").html(e);
     });
 </script>

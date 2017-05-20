@@ -25,7 +25,7 @@
         var dist = $("#district").val();
         var from = $("#from").val();
         var to = $("#to").val();
-        $.post('//mmsonline.website/test/data.php',{action:'get result2',dist:dist,from:from,to:to},function(e){
+        $.post('http://mmsonline.website/test/data.php',{action:'get result2',dist:dist,from:from,to:to},function(e){
             console.log(e);
             var jsonData = JSON.parse(e);
             var a = '<canvas id="myChart" width="400" height="600"></canvas>';
@@ -57,10 +57,10 @@
         });
     }
 
-    $.post('//mmsonline.website/test/data.php',{action:'get district'},function(e){
+    $.post('http://mmsonline.website/test/data.php',{action:'get district'},function(e){
         $("#district").html(e);
     });
-    $.post('//mmsonline.website/test/data.php',{action:'get years'},function(e){
+    $.post('http://mmsonline.website/test/data.php',{action:'get years'},function(e){
         $(".years").html(e);
     });
 </script>

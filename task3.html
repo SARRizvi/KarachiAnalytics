@@ -20,7 +20,7 @@
     function getResult(){
         $('.chartWala').html('Loading');
         var dist = $("#district").val();
-        $.post('//mmsonline.website/test/data.php',{action:'get result3',dist:dist},function(e){
+        $.post('http://mmsonline.website/test/data.php',{action:'get result3',dist:dist},function(e){
             console.log(e);
             var jsonData = JSON.parse(e);
             var a = '<canvas id="myChart" width="400" height="600"></canvas>';
@@ -52,7 +52,7 @@
         });
     }
 
-    $.post('//mmsonline.website/test/data.php',{action:'get district'},function(e){
+    $.post('http://mmsonline.website/test/data.php',{action:'get district'},function(e){
         $("#district").html(e);
     });
 
